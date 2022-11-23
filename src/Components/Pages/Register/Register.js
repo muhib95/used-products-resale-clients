@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../AuthContext/AuthContext';
 
 const Register = () => {
+    const {userRegister,updateUser}=useContext(UserContext);
+    
     const { register, handleSubmit } = useForm();
     const imageHostKey=process.env.REACT_APP_imgbb_key;
-   
+ 
+
 
     const onSubmit=(data)=>{
-        console.log(data);
+        // const name=data.name;
+        const email=data.email;
+        const password=data.password;
+        // console.log(data.email,data.password);
         const image=data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -20,7 +27,33 @@ const Register = () => {
   .then((response) => response.json())
   .then((result) => {
     if(result.success){
-        console.log( result.data.url);
+        // const imageUrl=result.data.url;
+        // console.log(result.data.url);
+        userRegister(email,password)
+        // console.log(name,imageUrl)
+        
+        .then((userCredential) => {
+          const userInfo={
+            displayName:data.name,
+            photoURL:result.data.url
+        }
+        updateUser(userInfo)
+            .then(() => {
+             
+                
+            
+              }).catch((error) => {
+               
+              });
+        
+          
+            console.log(userCredential);
+          })
+          .catch((error) => {
+          console.error(error);
+          });
+        
+        
     }
 
   })
@@ -28,6 +61,7 @@ const Register = () => {
     
    
     }
+ 
     return (
         <div>
              <div className='h-[800px]  flex justify-center items-center'>
@@ -70,7 +104,7 @@ const Register = () => {
 <select typeof='role' {...register("role")} className="select select-bordered w-full max-w-xs mt-3">
   
   
-    <option defaultValue={'useer'}>user</option>
+    <option defaultValue={'user'}>user</option>
     <option >Seller</option>
   
   

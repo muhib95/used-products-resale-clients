@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../AuthContext/AuthContext';
 
 const Navbar = () => {
+    const {user, logOut}=useContext(UserContext);
+    const handleLogOut=()=>{
+        logOut()
+        .then(()=>{
+
+        })
+        .catch((error)=>{
+            console.log(error);
+
+        })
+
+    }
+    console.log(user);
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -30,19 +44,18 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">
       <li><Link to='/'>Home</Link></li>
+   {
+    !user?.email?
+    <>
       <li><Link to='/register'>Register</Link></li>
       <li><Link to='/login'>Login</Link></li>
-      {/* <li tabIndex={0}>
-        <Link>
-          Parent
-          <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-        </Link>
-        <ul className="p-2">
-          <li><Link>Submenu 1</Link></li>
-          <li><Link>Submenu 2</Link></li>
-        </ul>
-      </li> */}
-      <li><button>LogOut</button></li>
+    </>
+    :
+<li><button onClick={handleLogOut}>LogOut</button></li>
+   }
+    
+    
+      
     </ul>
   </div>
   <div className="navbar-end">
