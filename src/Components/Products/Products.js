@@ -122,15 +122,36 @@ import ProductItem from './ProductItem';
 
 const Products = () => {
     const products=useLoaderData();
+    const handleBookProduct=(productInfo)=>{
+        console.log(productInfo);
+
+    }
   
     return (
         <div>
            <h2 className='text-center'>All product of {products? products[0].brand :'No name'}</h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
 {
-    products.map(product=><ProductItem key={product._id} product={product}></ProductItem>)
+    products.map(product=><ProductItem key={product._id} product={product} handleBookProduct={handleBookProduct}></ProductItem>)
 }
             </div>
+
+
+
+
+
+
+
+<input type="checkbox" id="booking" className="modal-toggle" />
+<div className="modal">
+  <div className="modal-box">
+    <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
+    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+    <div className="modal-action">
+      <label htmlFor="booking" className="btn">Yay!</label>
+    </div>
+  </div>
+</div>
         </div>
     );
 };
