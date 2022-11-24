@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import ProductItem from './ProductItem';
 // const products=[
 //     {
 //        "picture":"https://ibb.co/bz8kTys",
@@ -121,10 +122,15 @@ import { useLoaderData } from 'react-router-dom';
 
 const Products = () => {
     const products=useLoaderData();
-    console.log(products);
+  
     return (
         <div>
-            products
+           <h2 className='text-center'>All product of {products? products[0].brand :'No name'}</h2>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+{
+    products.map(product=><ProductItem key={product._id} product={product}></ProductItem>)
+}
+            </div>
         </div>
     );
 };
