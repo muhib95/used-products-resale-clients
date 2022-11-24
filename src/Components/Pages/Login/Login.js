@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -5,8 +6,8 @@ import { UserContext } from '../../AuthContext/AuthContext';
 
 const Login = () => {
 
-    const {userSignIn}=useContext(UserContext);
-
+    const {userSignIn,googleLogIn}=useContext(UserContext);
+    const provider=new GoogleAuthProvider();
     const { register, handleSubmit } = useForm();
     const onSubmit=(data)=>{
         console.log(data);
@@ -20,6 +21,16 @@ const Login = () => {
 
     
    
+    }
+
+    const handleGoogle=()=>{
+        googleLogIn(provider)
+        .then((result) => {
+         console.log(result);
+          }).catch((error) => {
+          console.error(error);
+          });
+
     }
     return (
         <div>
@@ -50,7 +61,7 @@ const Login = () => {
 <input className="btn btn-active w-full" type="submit" />
 </form>
 <div className='divider'>OR</div>
-<button className="btn btn-outline w-full">Google</button>
+<button className="btn btn-outline w-full " onClick={handleGoogle}>Google</button>
          </div>
          
        

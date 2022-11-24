@@ -68,7 +68,9 @@ const Register = () => {
       userName,
       userEmail,
       userPhoto,
-      userRoles};
+      userRoles,
+      varified:false
+    };
      fetch('http://localhost:5000/users', {
       method: 'POST', // or 'PUT'
       headers: {
