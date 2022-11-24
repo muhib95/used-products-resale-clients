@@ -15,6 +15,7 @@ const Register = () => {
         // const name=data.name;
         const email=data.email;
         const password=data.password;
+        const role=data.role;
         // console.log(data.email,data.password);
         const image=data.image[0];
         const formData = new FormData();
@@ -39,7 +40,7 @@ const Register = () => {
         }
         updateUser(userInfo)
             .then(() => {
-             
+              addUsers(data.name,data.email,result.data.url,role)
                 
             
               }).catch((error) => {
@@ -60,6 +61,32 @@ const Register = () => {
 
     
    
+    }
+
+    const addUsers=(userName,userEmail,userPhoto,userRoles)=>{
+     const user={
+      userName,
+      userEmail,
+      userPhoto,
+      userRoles};
+     fetch('http://localhost:5000/users', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+       
+      //   getUserToken(email);
+        
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
     }
  
     return (
