@@ -2,6 +2,50 @@ import React from 'react';
 
 const BookingModals = ({productData,user}) => {
     // const {displayName,email}=user;
+
+    const handleForm=event=>{
+        event.preventDefault();
+        const form=event.target;
+        const name=form.name.value;
+        const email=form.email.value;
+        const product=form.product.value;
+        const price=form.price.value;
+        const phone=form.phone.value;
+        const location=form.location.value;
+        // console.log(name,email,product,price,phone,location);
+        // window.location.reload(false);
+        const bookinInfo={
+            name,
+            email,
+            product,
+            price,
+            phone,
+            location,
+            image:productData.picture
+        };
+        fetch('http://localhost:5000/booking', {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookinInfo),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+          
+              console.log('Success:', data);
+              if(data.acknowledged){
+                alert('Booking success')
+                window.location.reload(false);
+              }
+              else{
+                // alert(data.message)
+              }
+              
+            })
+
+
+    }
     return (
         <div>
             
@@ -9,7 +53,7 @@ const BookingModals = ({productData,user}) => {
            
 <div className="modal">
   <div className="modal-box">
-  <form >
+  <form onSubmit={handleForm}>
   
 
     <input name='name' type="text" defaultValue={user?.displayName} disabled placeholder="Type name" className="input input-bordered w-full max-w-xs" />
@@ -18,13 +62,13 @@ const BookingModals = ({productData,user}) => {
     <input name='price' type="text" defaultValue={productData?.resalePrice} disabled placeholder="Type price" className="input input-bordered w-full max-w-xs mt-3" />
     <input name='phone' type="text" placeholder="Type phone" className="input input-bordered w-full max-w-xs mt-3" />
     <input name='location' type="text" placeholder="Type location" className="input input-bordered w-full max-w-xs mt-3" />
-    <button className="btn btn-primary block mt-4">Submit</button>
+    <button htmlFor="booking" className="btn btn-primary block mt-4">Submit</button>
 
     </form>
    
-    <div className="modal-action">
+    {/* <div className="modal-action">
       <label htmlFor="booking" className="btn">Yay!</label>
-    </div>
+    </div> */}
   </div>
 </div> 
         </div>
