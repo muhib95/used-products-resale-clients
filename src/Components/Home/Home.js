@@ -30,7 +30,7 @@ const {data:categories=[]}=useQuery({
 
     }
 })
-console.log(categories);
+// console.log(categories);
 
     return (
    <div>
@@ -40,13 +40,7 @@ console.log(categories);
                 {
                     categories.map(cat=><CategoryItems key={cat._id} cat={cat}></CategoryItems>)
                 }
-              
-               
-           
                 </div> 
-              
-             
-               
             </div>
         </div>
    
