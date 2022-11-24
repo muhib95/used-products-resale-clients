@@ -24,10 +24,15 @@ export const router=createBrowserRouter([
                 element:<Login></Login>
             },
             {
-                path:'/category/:id',
+                path:'/products/:name',
                 element:<Products></Products>,
-                loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+                loader:({params})=>fetch(`http://localhost:5000/products/${params.name}`)
             }
+            // {
+            //     path:'/category/:id',
+            //     element:<Products></Products>,
+            //     loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+            // }
 
         ]
     },

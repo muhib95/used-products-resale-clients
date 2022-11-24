@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CategoryItems = ({cat}) => {
-    const {_id,name,picture}=cat;
+    const {name,picture}=cat;
     // console.log(cat);
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -13,7 +13,7 @@ const CategoryItems = ({cat}) => {
           <h1 className="card-title">{name}</h1>
           <p>Buy Used Tv which brand you want!!</p>
           <div className="card-actions">
-            <Link to={`/category/${_id}`} className="btn btn-primary">Buy Now</Link>
+            <Link to={`/products/${name}`} className="btn btn-primary">Buy Now</Link>
           </div>
         </div>
       </div>
