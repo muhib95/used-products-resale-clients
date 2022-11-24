@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {  useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModals from './Booking/BookingModals';
 import ProductItem from './ProductItem';
 // const products=[
 //     {
@@ -121,9 +122,16 @@ import ProductItem from './ProductItem';
 // ];
 
 const Products = () => {
+    // const {user}=useContext(UserContext);
+    // console.log(user);
+const [productData,setProductdata]=useState({});
+const [user,setUser]=useState([]);
+
     const products=useLoaderData();
-    const handleBookProduct=(productInfo)=>{
-        console.log(productInfo);
+    const handleBookProduct=(productInfo,userInfo)=>{
+        setProductdata(productInfo);
+        setUser(userInfo);
+        // console.log(userInfo);
 
     }
   
@@ -136,22 +144,13 @@ const Products = () => {
 }
             </div>
 
+<BookingModals productData={productData} user={user}></BookingModals>
 
 
 
 
 
 
-<input type="checkbox" id="booking" className="modal-toggle" />
-<div className="modal">
-  <div className="modal-box">
-    <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
-    <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-    <div className="modal-action">
-      <label htmlFor="booking" className="btn">Yay!</label>
-    </div>
-  </div>
-</div>
         </div>
     );
 };

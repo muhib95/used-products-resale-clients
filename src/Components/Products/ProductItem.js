@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../AuthContext/AuthContext';
 
 
 
@@ -8,6 +9,8 @@ import React from 'react';
 
 
 const ProductItem = ({product,handleBookProduct}) => {
+const {user}=useContext(UserContext);
+// console.log(user);
     const {OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brand}=product;
     // console.log(_id,OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brandId,brand);
     
@@ -34,7 +37,7 @@ const ProductItem = ({product,handleBookProduct}) => {
 
     
     <div className="card-actions justify-end">
-      <label onClick={()=>handleBookProduct(product)} htmlFor="booking" className="btn btn-primary">Buy Now</label>
+      <label onClick={()=>handleBookProduct(product,user?user:'no user')} htmlFor="booking" className="btn btn-primary">Buy Now</label>
     </div>
   </div>
 </div>
