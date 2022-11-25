@@ -1,11 +1,11 @@
 import React, { useContext} from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../AuthContext/AuthContext';
 
 const Register = () => {
     const {userRegister,updateUser}=useContext(UserContext);
-    
+    let navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const imageHostKey=process.env.REACT_APP_imgbb_key;
  
@@ -81,6 +81,10 @@ const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
+        if(data.acknowledged){
+          registerVarification(userEmail);
+
+        }
        
       //   getUserToken(email);
         
@@ -91,6 +95,17 @@ const Register = () => {
 
     }
  
+    const registerVarification=(email)=>{
+      fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then(res=>res.json())
+      .then(data=>{
+          if(data.token){
+              localStorage.setItem('user-token',data.token);
+              navigate('/')
+              // navigate(from, { replace: true }); 
+          }
+      })
+  }
     return (
         <div>
              <div className='h-[800px]  flex justify-center items-center'>
