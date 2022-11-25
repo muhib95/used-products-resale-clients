@@ -7,13 +7,15 @@ const auth=getAuth(app);
 
 const AuthContext = ({children}) => {
     const [user,setUser]=useState([]);
+    const [loader,setLoader]=useState(true);
 
     const userSignIn=(email,password)=>{
+        setLoader(true);
         return signInWithEmailAndPassword(auth,email,password);
     }
 
     const userRegister=(email,password)=>{
-       
+        setLoader(true);
             return createUserWithEmailAndPassword(auth,email,password);
     }
 
@@ -21,7 +23,7 @@ const AuthContext = ({children}) => {
         const unSubscribe=onAuthStateChanged(auth,(currentUser)=>{
             
            setUser(currentUser) ;
-          
+           setLoader(false);
            
         })
         return ()=>{
@@ -35,6 +37,7 @@ const AuthContext = ({children}) => {
     }
 
     const googleLogIn=(provider)=>{
+        setLoader(true);
         return signInWithPopup(auth, provider)
     }
     const logOut=()=>{
@@ -42,7 +45,7 @@ const AuthContext = ({children}) => {
     }
 
     
-    const userInfo={user,userRegister,userSignIn,googleLogIn,updateUser,logOut};
+    const userInfo={user,userRegister,userSignIn,googleLogIn,updateUser,logOut,loader};
     return (
         <UserContext.Provider value={userInfo}>
                 {children}

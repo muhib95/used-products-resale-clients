@@ -53,7 +53,7 @@ const Navbar = () => {
     :
     <>
     <li><button onClick={handleLogOut}>LogOut</button></li>
-<li><Link to='/dashboard'>Dashboard</Link></li>
+    <li><Link to='/dashboard'>Dashboard</Link></li>
     </>
 
    }

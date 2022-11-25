@@ -66,9 +66,9 @@ const BookingModals = ({productData,user}) => {
 
     </form>
    
-    {/* <div className="modal-action">
-      <label htmlFor="booking" className="btn">Yay!</label>
-    </div> */}
+    <div className="modal-action">
+      <label htmlFor="booking" className="btn">Cancel</label>
+    </div>
   </div>
 </div> 
         </div>
