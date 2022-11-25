@@ -24,21 +24,49 @@ const Login = () => {
           .catch((error) => {
            console.error(error);
           });
-
-    
    
     }
 
     const handleGoogle=()=>{
         googleLogIn(provider)
         .then((result) => {
-            navigate(from, { replace: true });
-         console.log(result);
-          }).catch((error) => {
-          console.error(error);
-          });
+        //     navigate(from, { replace: true });
+        //  console.log(result);
+         const currentUser={
+            email:result.user.email
+           };
+           googleVarificationJwt(currentUser);
+          })
+        //   .catch((error) => {
+        //   console.error(error);
+        //   });
 
     }
+
+    const googleVarificationJwt=(currentUser)=>{
+        fetch('http://localhost:5000/jwt',{
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json',
+            },
+            body:JSON.stringify(currentUser)
+           })
+           .then(res=>res.json())
+           .then(data=>{
+            localStorage.setItem('user-token',data.token)
+            navigate(from, { replace: true });
+            
+             
+          })
+          .catch((error) => {
+            console.error(error);
+            });
+
+    }
+
+
+
+
     return (
         <div>
               <div className='h-[800px]  flex justify-center items-center'>

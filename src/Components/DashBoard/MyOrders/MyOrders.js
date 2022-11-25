@@ -10,10 +10,10 @@ const {data:orders=[]}=useQuery({
     queryKey:['orders',user?.email],
     queryFn:async()=>{
         const res=await fetch(`http://localhost:5000/orders?email=${user?.email}`,{
-            // headers:{
-            //     authorization:`bearer ${localStorage.getItem('token')}`
+            headers:{
+                authorization:`bearer ${localStorage.getItem('user-token')}`
                 
-            // }
+            }
         })
         const data=res.json()
         return data;
