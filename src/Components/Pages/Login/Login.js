@@ -17,14 +17,31 @@ const Login = () => {
         console.log(data);
         userSignIn(data.email,data.password)
         .then((userCredential) => {
-            navigate(from, { replace: true });
+           
+                const email=userCredential.user.email
+               
 
-            console.log(userCredential);
+               loginVarification(email);
+            // navigate(from, { replace: true });
+
+            console.log(email);
           })
           .catch((error) => {
            console.error(error);
           });
    
+    }
+
+
+    const loginVarification=(email)=>{
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.token){
+                localStorage.setItem('user-token',data.token);
+                navigate(from, { replace: true }); 
+            }
+        })
     }
 
     const handleGoogle=()=>{
