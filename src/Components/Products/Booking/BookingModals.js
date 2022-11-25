@@ -21,6 +21,7 @@ const BookingModals = ({productData,user}) => {
             price,
             phone,
             location,
+            productId:productData._id,
             image:productData.picture
         };
         fetch('http://localhost:5000/booking', {
@@ -39,7 +40,8 @@ const BookingModals = ({productData,user}) => {
                 window.location.reload(false);
               }
               else{
-                // alert(data.message)
+                alert(data.message);
+                window.location.reload(false);
               }
               
             })
