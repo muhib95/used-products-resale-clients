@@ -48,15 +48,51 @@ const Login = () => {
         googleLogIn(provider)
         .then((result) => {
         //     navigate(from, { replace: true });
-        //  console.log(result);
-         const currentUser={
-            email:result.user.email
-           };
-           googleVarificationJwt(currentUser);
+         console.log(result.user.displayName,result.user.email,result.user.photoURL);
+         const userInfo={
+          userName:result.user.displayName,
+          userEmail:result.user.email,
+          userPhoto:result.user.photoURL,
+          userRoles:'user',
+          varified:false
+         }
+        //  const currentUser={
+        //     email:result.user.email
+        //    };
+           googleIdUser(userInfo);
+          //  googleVarificationJwt(currentUser);
           })
         //   .catch((error) => {
         //   console.error(error);
         //   });
+
+    }
+
+    const googleIdUser=(userInfo)=>{
+      fetch('http://localhost:5000/users', {
+        method: 'PUT', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfo),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          if(data.acknowledged){
+            const currentUser={
+                  email:userInfo.userEmail
+                 };
+            googleVarificationJwt(currentUser);
+  
+          }
+         
+        //   getUserToken(email);
+          
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
 
     }
 
