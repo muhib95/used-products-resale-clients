@@ -63,7 +63,8 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link className="btn">Get started</Link>
+  {/* <label htmlFor="my-drawer-2" className="drawer-overlay btn btn-info">Open drower</label>  */}
+  <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
   </div>
 </div>
         </div>
