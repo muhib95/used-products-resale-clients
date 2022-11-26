@@ -24,6 +24,7 @@ const BookingModals = ({productData,user}) => {
             productId:productData._id,
             image:productData.picture
         };
+      
         fetch('http://localhost:5000/booking', {
             method: 'POST', // or 'PUT'
             headers: {
