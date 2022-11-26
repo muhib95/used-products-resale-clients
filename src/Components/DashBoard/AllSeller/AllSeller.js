@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const AllSeller = () => {
-    const {data:allseller=[]}=useQuery({
+    const {data:allseller=[],refetch}=useQuery({
         queryKey:['allseller'],
         queryFn:async()=>{
             const res=await fetch('http://localhost:5000/dashboard/allseller',{
@@ -16,7 +16,45 @@ const AllSeller = () => {
         }
     })
 
-    console.log(allseller);
+
+
+    const verifiedSeller=(sellerInfo)=>{
+        console.log(sellerInfo.userEmail);
+        const info={
+            email:sellerInfo.userEmail
+           };
+        fetch('http://localhost:5000/seller', {
+            method: 'PUT', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(info),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('Success:', data);
+              if(data.modifiedCount>0){
+                refetch();
+              
+      
+              }
+             
+            
+              
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+
+
+    }
+
+
+    // const productUserVarified=()=>{
+
+    // }
+
+    // console.log(allseller);
     return (
         <div>
             <div>
@@ -25,6 +63,7 @@ const AllSeller = () => {
   <table className="table w-full">
     
     <thead>
+
       <tr>
       
         <th>Name</th>
@@ -60,7 +99,15 @@ const AllSeller = () => {
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
                 <th>
-                  <button className="btn btn-warning">Varified</button>
+                    {
+                        
+                    seller.varified?
+<button  className="btn btn-success">Verified</button>
+:
+<button onClick={()=>verifiedSeller(seller)}  className="btn btn-warning">Verify</button>
+
+                    }
+                  
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
               </tr>)
