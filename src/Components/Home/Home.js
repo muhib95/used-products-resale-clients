@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import CategoryItems from '../CategoryItems/CategoryItems';
 import Advertisement from '../Advertisement/Advertisement';
-import { UserContext } from '../AuthContext/AuthContext';
+
 
 // const category=[
 //     {
@@ -20,12 +20,10 @@ import { UserContext } from '../AuthContext/AuthContext';
 // ];
 
 const Home = () => {
-const {user}=useContext(UserContext);
-    const info={
-        email:user?.email
-       };
+
+   
 //Category data here...
-const {data:categories=[],refetch}=useQuery({
+const {data:categories=[]}=useQuery({
     queryKey:['options'],
     queryFn:async()=>{
         const res=await fetch('http://localhost:5000/category')
@@ -46,36 +44,10 @@ const {data:adds=[]}=useQuery({
     }
 })
 // console.log(adds);
-const varifiedSellerProduct=(email)=>{
-    fetch('http://localhost:5000/varifiedSellerProduct', {
-      method: 'PUT', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-        authorization:`bearer ${localStorage.getItem('user-token')}`,
-      },
-      body: JSON.stringify(email),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        if(data.acknowledged){
-          refetch();
-     
 
-        }
-       
-      
-        
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+ 
 
-
-
-  }
-
-  varifiedSellerProduct(info);
+ 
 
     return (
    <div >

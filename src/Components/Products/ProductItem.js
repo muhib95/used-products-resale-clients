@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../AuthContext/AuthContext';
-
+import very from '../../acc/vary.png'
 
 
 
@@ -26,6 +26,15 @@ const {user}=useContext(UserContext);
     <p>ResalePrice Price: {resalePrice?resalePrice:'no reselPrice'}</p>
     <p>yearsOfUse: {yearsOfUse?yearsOfUse:'no info'}</p>
     <p>SellerName: {sellerName?sellerName:'no name'}</p>
+    {
+      verified?
+      <img src={very} alt="" />
+      :
+      <>
+      </>
+
+    }
+    
     <p>PurchaseYear: {purchaseYear?purchaseYear:'na'}</p>
     <p>PostTime: {postTime?postTime:'Na'}</p>
     <p>PostDate: {postDate?postDate:'Na'}</p>

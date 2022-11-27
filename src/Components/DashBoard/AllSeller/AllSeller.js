@@ -37,9 +37,8 @@ const AllSeller = () => {
             .then((data) => {
               console.log('Success:', data);
               if(data.modifiedCount>0){
-                
-                refetch();
-              alert('Seller Varified');
+                varifiedSellerProduct(info);
+             
       
               }
              
@@ -51,6 +50,35 @@ const AllSeller = () => {
             });
 
 
+    }
+    const varifiedSellerProduct=(email)=>{
+      fetch('http://localhost:5000/varifiedSellerProduct', {
+        method: 'PUT', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+          authorization:`bearer ${localStorage.getItem('user-token')}`,
+        },
+        body: JSON.stringify(email),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          if(data.acknowledged){
+           
+            refetch();
+            alert('Seller Varified');
+  
+          }
+         
+        
+          
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+  
+  
+  
     }
    
 

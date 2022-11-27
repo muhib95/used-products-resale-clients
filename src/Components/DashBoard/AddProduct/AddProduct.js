@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../AuthContext/AuthContext';
@@ -9,11 +10,23 @@ const AddProduct = () => {
     const { register, handleSubmit } = useForm();
     const sellerName=user.displayName || 'No name';
     const sellerEmail=user.email || 'no email';
+    const [very,setVery]=useState(false)
     let date = new Date();
 	let current_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
     let time = new Date();
 	let current_time = time.getHours()+":"+time.getMinutes()+":"+ time.getSeconds();
     const imageHostKey=process.env.REACT_APP_imgbb_key;
+
+
+
+useEffect(()=>{
+    fetch(`http://localhost:5000/usercheck?email=${sellerEmail}`)
+    .then(res=>res.json())
+    .then(data=>setVery(data.varified))
+},[sellerEmail])
+
+console.log(very);
+
 const  onSubmit=(data)=>{
     console.log(data);
     // const productInfo={
@@ -44,7 +57,7 @@ body: formData
         postDate:current_date,
         sellerName,
       sellerEmail,
-        verified:false,
+        verified:very,
         discription:data.description,
         purchaseYear:data.pursesYear,
         add:false
