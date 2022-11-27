@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../AuthContext/AuthContext';
 
 const AddProduct = () => {
     const {user}=useContext(UserContext);
+    let navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const sellerName=user.displayName || 'No name';
     const sellerEmail=user.email || 'no email';
@@ -69,6 +71,7 @@ const addProduct=(pInfo)=>{
           if(data.acknowledged){
            
   alert('Product added');
+  navigate('/dashboard/myproducts');
           }
          
         
@@ -104,7 +107,7 @@ const addProduct=(pInfo)=>{
                 </div>
                 <div className="form-control w-full max-w-xs">
                 <label className="label">
-                <span className="label-text">Original Price</span>
+                <span className="label-text">Discription</span>
                 </label>
                
                 <textarea type="description" className="textarea textarea-bordered" {...register("description",{ required: "Email Address is required" })} placeholder="Bio"></textarea>

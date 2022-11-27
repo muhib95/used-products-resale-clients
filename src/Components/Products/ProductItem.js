@@ -11,7 +11,7 @@ import { UserContext } from '../AuthContext/AuthContext';
 const ProductItem = ({product,handleBookProduct}) => {
 const {user}=useContext(UserContext);
 // console.log(user);
-    const {OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brand}=product;
+    const {OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brand,postDate}=product;
     // console.log(_id,OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brandId,brand);
     
     return (
@@ -28,11 +28,12 @@ const {user}=useContext(UserContext);
     <p>SellerName: {sellerName?sellerName:'no name'}</p>
     <p>PurchaseYear: {purchaseYear?purchaseYear:'na'}</p>
     <p>PostTime: {postTime?postTime:'Na'}</p>
+    <p>PostDate: {postDate?postDate:'Na'}</p>
     <p>Location: {location?location:'no location'}</p>
     <p>Condition: {condition?condition:'na'}</p>
     <p>Brand: {brand?brand:'na'}</p>
     <p>verified: {verified?'verified':'Not varified'}</p>
-    <p>mobile: {mobile}</p>
+    <p>mobile: {mobile?mobile:'not found'}</p>
     </div>
 
     
