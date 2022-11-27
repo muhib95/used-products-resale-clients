@@ -11,9 +11,34 @@ import very from '../../acc/vary.png'
 const ProductItem = ({product,handleBookProduct}) => {
 const {user}=useContext(UserContext);
 // console.log(user);
-    const {OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brand,postDate}=product;
+    const {_id,OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brand,postDate,sellerEmail}=product;
     // console.log(_id,OriginalPrice,yearsOfUse,verified,sellerName,resalePrice,purchaseYear,postTime,picture,name,mobile,location,discription,condition,brandId,brand);
-    
+    const reportProduct={
+      itemId:_id,
+      itemName:name,
+      sellerName:sellerName,
+      sellerEmail:sellerEmail
+
+    }
+
+const handleReportedItem=(reportProduct)=>{
+  fetch('http://localhost:5000/reporttoadmin/', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+    authorization:`bearer ${localStorage.getItem('user-token')}`
+  },
+  body: JSON.stringify(reportProduct),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+  })
+
+}
+
+
+
     return (
         <div className='mt-6'>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -46,8 +71,9 @@ const {user}=useContext(UserContext);
     </div>
 
     
-    <div className="card-actions justify-end">
+    <div className="card-actions justify-around">
       <label onClick={()=>handleBookProduct(product,user?user:'no user')} htmlFor="booking" className="btn btn-primary">Buy Now</label>
+      <button onClick={()=>handleReportedItem(reportProduct)} className='btn btn-warning'>Report</button>
     </div>
   </div>
 </div>
