@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import CategoryItems from '../CategoryItems/CategoryItems';
+import Advertisement from '../Advertisement/Advertisement';
 
 // const category=[
 //     {
@@ -30,10 +31,21 @@ const {data:categories=[]}=useQuery({
 
     }
 })
-// console.log(categories);
+
+
+const {data:adds=[]}=useQuery({
+    queryKey:['adds'],
+    queryFn:async()=>{
+        const res=await fetch('http://localhost:5000/advertisement')
+        const data=await res.json()
+        return data;
+
+    }
+})
+// console.log(adds);
 
     return (
-   <div>
+   <div >
          <div>
              <h1 className='text-center'>All used Tv products category</h1>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-3 '>
@@ -42,9 +54,28 @@ const {data:categories=[]}=useQuery({
                 }
                 </div> 
             </div>
-            <div>
-                <h2 className='text-center'>Advertisemnet Part</h2>
+            <div >
+            {
+                !adds.length?
+                <>
+                </>
+                :
+                <div>
+                       <div>
+                <h2 className='text-center text-red-500 text-4xl my-10'>Advertisemnet</h2>
             </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-2  '>
+                {
+                    adds.map(add=><Advertisement key={add._id} add={add}></Advertisement>)
+                }
+            </div>
+                </div>
+             
+
+            }
+            </div>
+            
+            
         </div>
    
     );
