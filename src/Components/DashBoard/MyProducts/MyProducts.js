@@ -22,6 +22,24 @@ console.log(myProducts);
 
 const deleteMyProduct=(id)=>{
 console.log(id);
+fetch(`http://localhost:5000/myproducts/${id}`, {
+  method: 'delete', // or 'PUT'
+  headers: {
+    authorization:`bearer ${localStorage.getItem('user-token')}`,
+  },
+ 
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+    refetch();
+    if(data.deletedCount>0){
+        alert('Delete your product')
+       
+
+    }
+  })
+ 
 }
 
 
@@ -91,7 +109,15 @@ const productAdvertise=(id)=>{
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
                 <th>
-                  <button onClick={()=>productAdvertise(order._id)} className="btn btn-warning">Advertise</button>
+                    {
+                        order.add?
+                        <>
+                        </>
+                        :
+                        <button onClick={()=>productAdvertise(order._id)} className="btn btn-warning">Advertise</button>
+
+                    }
+                 
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
               </tr>)
