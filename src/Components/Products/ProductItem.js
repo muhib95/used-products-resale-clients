@@ -22,7 +22,7 @@ const {user}=useContext(UserContext);
     }
 
 const handleReportedItem=(reportProduct)=>{
-  fetch('http://localhost:5000/reporttoadmin/', {
+  fetch('http://localhost:5000/reporttoadmin', {
   method: 'POST', // or 'PUT'
   headers: {
     'Content-Type': 'application/json',
@@ -34,6 +34,7 @@ const handleReportedItem=(reportProduct)=>{
   .then((data) => {
     console.log('Success:', data);
   })
+
 
 }
 
