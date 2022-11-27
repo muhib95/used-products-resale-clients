@@ -42,6 +42,9 @@ const {data:categories=[]}=useQuery({
                 }
                 </div> 
             </div>
+            <div>
+                <h2 className='text-center'>Advertisemnet Part</h2>
+            </div>
         </div>
    
     );

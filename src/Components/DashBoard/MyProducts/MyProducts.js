@@ -5,7 +5,7 @@ import { UserContext } from '../../AuthContext/AuthContext';
 const MyProducts = () => {
     const {user}=useContext(UserContext);
 console.log(user.email);
-const {data:myProducts=[]}=useQuery({
+const {data:myProducts=[],refetch}=useQuery({
     queryKey:['orders',user?.email],
     queryFn:async()=>{
         const res=await fetch(`http://localhost:5000/myproducts?email=${user?.email}`,{
@@ -19,6 +19,41 @@ const {data:myProducts=[]}=useQuery({
     }
 })
 console.log(myProducts);
+
+const deleteMyProduct=(id)=>{
+console.log(id);
+}
+
+
+const productAdvertise=(id)=>{
+    const info={
+        id:id
+       };
+    fetch('http://localhost:5000/advertise', {
+        method: 'PUT', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(info),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          if(data.modifiedCount>0){
+            refetch();
+          
+  
+          }
+         
+        
+          
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+
+}
     return (
         <div>
             <h1>My products</h1>
@@ -52,11 +87,11 @@ console.log(myProducts);
                 </td>
                 <td>{order.resalePrice}</td>
                 <th>
-                  <button className="btn btn-warning">Delete</button>
+                  <button onClick={()=>deleteMyProduct(order._id)} className="btn btn-warning">Delete</button>
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
                 <th>
-                  <button className="btn btn-warning">Advertise</button>
+                  <button onClick={()=>productAdvertise(order._id)} className="btn btn-warning">Advertise</button>
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
               </tr>)

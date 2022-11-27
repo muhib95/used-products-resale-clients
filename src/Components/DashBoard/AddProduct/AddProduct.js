@@ -46,7 +46,8 @@ body: formData
       sellerEmail,
         verified:false,
         discription:data.description,
-        purchaseYear:data.pursesYear
+        purchaseYear:data.pursesYear,
+        add:false
         }
         if(result.success){
             addProduct(productInfo)
