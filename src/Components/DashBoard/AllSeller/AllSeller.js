@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
+
 const AllSeller = () => {
+
     const {data:allseller=[],refetch}=useQuery({
         queryKey:['allseller'],
         queryFn:async()=>{
@@ -27,6 +29,7 @@ const AllSeller = () => {
             method: 'PUT', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
+              authorization:`bearer ${localStorage.getItem('user-token')}`,
             },
             body: JSON.stringify(info),
           })
@@ -34,8 +37,9 @@ const AllSeller = () => {
             .then((data) => {
               console.log('Success:', data);
               if(data.modifiedCount>0){
+                
                 refetch();
-              
+              alert('Seller Varified');
       
               }
              
@@ -48,8 +52,9 @@ const AllSeller = () => {
 
 
     }
+   
 
-
+   
     // const productUserVarified=()=>{
 
     // }
