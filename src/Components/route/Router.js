@@ -12,6 +12,7 @@ import DashBoardLayOut from "../LayOut/DashBoardLayOut";
 import LayOut from "../LayOut/LayOut";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import AdminRoute from "../PrivateRoute/AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Products from "../Products/Products";
 
@@ -63,15 +64,15 @@ export const router=createBrowserRouter([
             },
             {
                 path:'/dashboard/allseller',
-                element:<AllSeller></AllSeller>
+                element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
                 path:'/dashboard/allbuyers',
-                element:<AllByers></AllByers>
+                element:<AdminRoute><AllByers></AllByers></AdminRoute>
             },
             {
                 path:'/dashboard/reporttoadmin',
-                element:<ReportToAdmin></ReportToAdmin>
+                element:<AdminRoute><ReportToAdmin></ReportToAdmin></AdminRoute>
             }
         ]
     }
