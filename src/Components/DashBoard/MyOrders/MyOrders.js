@@ -10,7 +10,7 @@ console.log(user.email);
 const {data:orders=[]}=useQuery({
     queryKey:['orders',user?.email],
     queryFn:async()=>{
-        const res=await fetch(`http://localhost:5000/orders?email=${user?.email}`,{
+        const res=await fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/orders?email=${user?.email}`,{
             headers:{
                 authorization:`bearer ${localStorage.getItem('user-token')}`
                 

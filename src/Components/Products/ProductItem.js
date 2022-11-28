@@ -22,7 +22,7 @@ const {user}=useContext(UserContext);
     }
 
 const handleReportedItem=(reportProduct)=>{
-  fetch('http://localhost:5000/reporttoadmin', {
+  fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/reporttoadmin', {
   method: 'POST', // or 'PUT'
   headers: {
     'Content-Type': 'application/json',

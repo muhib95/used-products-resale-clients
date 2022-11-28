@@ -34,7 +34,7 @@ const Login = () => {
 
 
     const loginVarification=(email)=>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/jwt?email=${email}`)
         .then(res=>res.json())
         .then(data=>{
             if(data.token){
@@ -69,7 +69,7 @@ const Login = () => {
     }
 
     const googleIdUser=(userInfo)=>{
-      fetch('http://localhost:5000/users', {
+      fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/users', {
         method: 'PUT', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const Login = () => {
     }
 
     const googleVarificationJwt=(currentUser)=>{
-        fetch('http://localhost:5000/jwt',{
+        fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/jwt',{
             method:'POST',
             headers:{
               'Content-Type':'application/json',

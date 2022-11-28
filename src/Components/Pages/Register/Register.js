@@ -71,7 +71,7 @@ const Register = () => {
       userRoles,
       varified:false
     };
-     fetch('http://localhost:5000/users', {
+     fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/users', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const Register = () => {
     }
  
     const registerVarification=(email)=>{
-      fetch(`http://localhost:5000/jwt?email=${email}`)
+      fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/jwt?email=${email}`)
       .then(res=>res.json())
       .then(data=>{
           if(data.token){

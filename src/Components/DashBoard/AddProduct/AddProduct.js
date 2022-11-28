@@ -20,7 +20,7 @@ const AddProduct = () => {
 
 
 useEffect(()=>{
-    fetch(`http://localhost:5000/usercheck?email=${sellerEmail}`)
+    fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/usercheck?email=${sellerEmail}`)
     .then(res=>res.json())
     .then(data=>setVery(data.varified))
 },[sellerEmail])
@@ -72,7 +72,7 @@ body: formData
 
 
 const addProduct=(pInfo)=>{
-    fetch('http://localhost:5000/addProduct', {
+    fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/addProduct', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

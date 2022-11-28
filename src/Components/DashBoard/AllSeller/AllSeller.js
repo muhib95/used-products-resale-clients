@@ -7,7 +7,7 @@ const AllSeller = () => {
     const {data:allseller=[],refetch}=useQuery({
         queryKey:['allseller'],
         queryFn:async()=>{
-            const res=await fetch('http://localhost:5000/dashboard/allseller',{
+            const res=await fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/dashboard/allseller',{
                 headers:{
                     authorization:`bearer ${localStorage.getItem('user-token')}`
                     
@@ -25,7 +25,7 @@ const AllSeller = () => {
         const info={
             email:sellerInfo.userEmail
            };
-        fetch('http://localhost:5000/seller', {
+        fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/seller', {
             method: 'PUT', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const AllSeller = () => {
 
     }
     const varifiedSellerProduct=(email)=>{
-      fetch('http://localhost:5000/varifiedSellerProduct', {
+      fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/varifiedSellerProduct', {
         method: 'PUT', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const AllSeller = () => {
    
     const deleteSeller=(id)=>{
       console.log(id);
-  fetch(`http://localhost:5000/sellerdelete/${id}`, {
+  fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/sellerdelete/${id}`, {
     method: 'delete', // or 'PUT'
     headers: {
       authorization:`bearer ${localStorage.getItem('user-token')}`,

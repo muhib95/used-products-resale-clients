@@ -16,7 +16,7 @@ console.log(Payment);
     const [clientSecret, setClientSecret] = useState("");
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://b612-used-products-resale-server-side-muhib95.vercel.app/create-payment-intent", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json" ,
@@ -82,7 +82,7 @@ const handleSubmit=async(event)=>{
 
        }
 
-fetch('http://localhost:5000/paymentstore', {
+fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/paymentstore', {
   method: 'POST', // or 'PUT'
   headers: {
     'Content-Type': 'application/json',

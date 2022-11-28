@@ -40,7 +40,7 @@ export const router=createBrowserRouter([
             {
                 path:'/products/:name',
                 element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/products/${params.name}`)
+                loader:({params})=>fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/products/${params.name}`)
             },
             {
                 path:'/blogs',
@@ -49,7 +49,7 @@ export const router=createBrowserRouter([
             // {
             //     path:'/category/:id',
             //     element:<Products></Products>,
-            //     loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+            //     loader:({params})=>fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/category/${params.id}`)
             // }
 
         ]
@@ -85,7 +85,7 @@ export const router=createBrowserRouter([
             {
                 path:'/dashboard/payment/:id',
                 element:<Payment></Payment>,
-                loader:({params})=>fetch(`http://localhost:5000/dashboard/payment/${params.id}`)
+                loader:({params})=>fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/dashboard/payment/${params.id}`)
                
             }
         ]

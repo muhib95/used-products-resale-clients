@@ -26,7 +26,12 @@ const Home = () => {
 const {data:categories=[]}=useQuery({
     queryKey:['options'],
     queryFn:async()=>{
-        const res=await fetch('http://localhost:5000/category')
+        const res=await fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/category',{
+            headers:{
+                authorization:`bearer ${localStorage.getItem('user-token')}`
+                
+            }
+        })
         const data=await res.json()
         return data;
 
@@ -37,7 +42,7 @@ const {data:categories=[]}=useQuery({
 const {data:adds=[]}=useQuery({
     queryKey:['adds'],
     queryFn:async()=>{
-        const res=await fetch('http://localhost:5000/advertisement')
+        const res=await fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/advertisement')
         const data=await res.json()
         return data;
 

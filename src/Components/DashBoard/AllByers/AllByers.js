@@ -5,7 +5,7 @@ const AllByers = () => {
     const {data:allBuyers=[],refetch}=useQuery({
         queryKey:['allBuyers'],
         queryFn:async()=>{
-            const res=await fetch('http://localhost:5000/dashboard/allbuyers',{
+            const res=await fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/dashboard/allbuyers',{
                 headers:{
                     authorization:`bearer ${localStorage.getItem('user-token')}`
                     
@@ -17,7 +17,7 @@ const AllByers = () => {
     })
     const deleteBuyer=(id)=>{
       console.log(id);
-  fetch(`http://localhost:5000/sellerdelete/${id}`, {
+  fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/sellerdelete/${id}`, {
     method: 'delete', // or 'PUT'
     headers: {
       authorization:`bearer ${localStorage.getItem('user-token')}`,

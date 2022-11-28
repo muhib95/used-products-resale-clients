@@ -5,7 +5,7 @@ const ReportToAdmin = () => {
   const {data:reportProducts=[],refetch}=useQuery({
     queryKey:['orders'],
     queryFn:async()=>{
-        const res=await fetch('http://localhost:5000/dashboard/reporttoadmin',{
+        const res=await fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/dashboard/reporttoadmin',{
             headers:{
                 authorization:`bearer ${localStorage.getItem('user-token')}`
                 
@@ -18,7 +18,7 @@ const ReportToAdmin = () => {
 
 const deleteReportProduct=(id)=>{
   console.log(id);
-  fetch(`http://localhost:5000/reporttoadminproduct/${id}`, {
+  fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/reporttoadminproduct/${id}`, {
     method: 'delete', // or 'PUT'
     headers: {
       authorization:`bearer ${localStorage.getItem('user-token')}`,

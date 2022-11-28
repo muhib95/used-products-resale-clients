@@ -8,7 +8,7 @@ console.log(user.email);
 const {data:myProducts=[],refetch}=useQuery({
     queryKey:['orders',user?.email],
     queryFn:async()=>{
-        const res=await fetch(`http://localhost:5000/myproducts?email=${user?.email}`,{
+        const res=await fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/myproducts?email=${user?.email}`,{
             headers:{
                 authorization:`bearer ${localStorage.getItem('user-token')}`
                 
@@ -22,7 +22,7 @@ console.log(myProducts);
 
 const deleteMyProduct=(id)=>{
 console.log(id);
-fetch(`http://localhost:5000/myproducts/${id}`, {
+fetch(`https://b612-used-products-resale-server-side-muhib95.vercel.app/myproducts/${id}`, {
   method: 'delete', // or 'PUT'
   headers: {
     authorization:`bearer ${localStorage.getItem('user-token')}`,
@@ -47,7 +47,7 @@ const productAdvertise=(id)=>{
     const info={
         id:id
        };
-    fetch('http://localhost:5000/advertise', {
+    fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/advertise', {
         method: 'PUT', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',

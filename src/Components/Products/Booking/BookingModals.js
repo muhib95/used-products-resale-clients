@@ -25,7 +25,7 @@ const BookingModals = ({productData,user}) => {
             image:productData.picture
         };
       
-        fetch('http://localhost:5000/booking', {
+        fetch('https://b612-used-products-resale-server-side-muhib95.vercel.app/booking', {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
