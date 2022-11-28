@@ -17,7 +17,7 @@ const Navbar = () => {
     }
     console.log(user);
     return (
-        <div>
+        <div >
             <div className="navbar bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
@@ -39,7 +39,7 @@ const Navbar = () => {
         <li><Link>Item 3</Link></li>
       </ul>
     </div>
-    <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+    <Link className="btn btn-ghost normal-case text-xl text-red-500">Buy and Sell Tv</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">
@@ -57,7 +57,7 @@ const Navbar = () => {
     </>
 
    }
-    
+    <li><Link to='/blogs'>Blogs</Link></li>
     
       
     </ul>
