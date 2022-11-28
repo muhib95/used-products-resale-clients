@@ -81,6 +81,27 @@ const AllSeller = () => {
   
     }
    
+    const deleteSeller=(id)=>{
+      console.log(id);
+  fetch(`http://localhost:5000/sellerdelete/${id}`, {
+    method: 'delete', // or 'PUT'
+    headers: {
+      authorization:`bearer ${localStorage.getItem('user-token')}`,
+    },
+   
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+      refetch();
+      if(data.deletedCount>0){
+          alert('Delete your reported product');
+          refetch();
+         
+  
+      }
+    })
+    }
 
    
     // const productUserVarified=()=>{
@@ -128,7 +149,7 @@ const AllSeller = () => {
                 </td>
                 <td></td>
                 <th>
-                  <button className="btn btn-warning">Delete</button>
+                  <button onClick={()=>deleteSeller(seller._id)} className="btn btn-warning">Delete</button>
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
                 <th>

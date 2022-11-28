@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const AllByers = () => {
-    const {data:allBuyers=[]}=useQuery({
+    const {data:allBuyers=[],refetch}=useQuery({
         queryKey:['allBuyers'],
         queryFn:async()=>{
             const res=await fetch('http://localhost:5000/dashboard/allbuyers',{
@@ -15,7 +15,27 @@ const AllByers = () => {
             return data;
         }
     })
-
+    const deleteBuyer=(id)=>{
+      console.log(id);
+  fetch(`http://localhost:5000/sellerdelete/${id}`, {
+    method: 'delete', // or 'PUT'
+    headers: {
+      authorization:`bearer ${localStorage.getItem('user-token')}`,
+    },
+   
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+     
+      if(data.deletedCount>0){
+          alert('Delete your reported product');
+          refetch();
+         
+  
+      }
+    })
+    }
     console.log(allBuyers);
     return (
         <div>
@@ -56,7 +76,7 @@ const AllByers = () => {
                 </td>
                 <td></td>
                 <th>
-                  <button className="btn btn-warning">Delete</button>
+                  <button onClick={()=>deleteBuyer(buyer._id)} className="btn btn-warning">Delete</button>
                   {/* <button className="btn btn-success">Paid</button> */}
                 </th>
                 
